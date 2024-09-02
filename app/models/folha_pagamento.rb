@@ -1,2 +1,0 @@
-class FolhaPagamento < ApplicationRecord
-end

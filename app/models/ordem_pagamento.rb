@@ -1,2 +1,0 @@
-class OrdemPagamento < ApplicationRecord
-end

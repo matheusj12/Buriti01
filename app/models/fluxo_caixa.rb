@@ -1,2 +1,0 @@
-class FluxoCaixa < ApplicationRecord
-end

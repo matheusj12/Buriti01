@@ -1,2 +1,0 @@
-class AutomacaoTarefa < ApplicationRecord
-end
