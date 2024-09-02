@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @article.title %> - Meu Aplicativo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a biblioteca jQuery e o JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4"><%= @article.title %></h1>
+
+    <div class="mb-3">
+      <p><strong>Descrição:</strong> <%= @article.description %></p>
+      <p><strong>Conteúdo:</strong> <%= @article.content %></p>
+      <p><strong>Autor:</strong> <%= @article.author_name %></p>
+      <p><strong>Publicado em:</strong> <%= @article.published_at.strftime("%d/%m/%Y %H:%M") if @article.published_at.present? %></p>
+    </div>
+
+    <!-- Links de ação -->
+    <div class="mb-3">
+      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-warning' %>
+      <%= link_to 'Voltar', articles_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</body>
+</html>

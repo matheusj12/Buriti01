@@ -15,7 +15,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <!-- Incluir o CSS do Bootstrap -->
-  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Carregar o arquivo de estilo específico -->
   <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -24,15 +24,41 @@
   <%= yield :stylesheet %>
 </head>
 
-<body class="chart-grid">
-  <div class="page-border">
+<body>
 
+  <div class="container mt-4">
+    <h1 class="mb-4">Lista de Tutorias</h1>
 
-
-    <%= javascript_tag do %>
-      // Carregar a biblioteca do Google Charts
-      google.charts.load('current', { 'packages': ['corechart'] });
+    <!-- Formulário de Pesquisa -->
+    <%= form_with url: articles_path, method: :get, local: true, class: 'form-inline mb-4' do |form| %>
+      <div class="form-group">
+        <%= form.label :search, 'Pesquisar:', class: 'sr-only' %>
+        <%= form.text_field :search, value: params[:search], placeholder: 'Buscar por título ou descrição', class: 'form-control mr-sm-2' %>
+      </div>
+      <%= form.submit 'Pesquisar', class: 'btn btn-primary my-2 my-sm-0' %>
     <% end %>
+
+    <!-- Lista de Artigos -->
+    <div class="list-group">
+      <% @articles.each do |article| %>
+        <div class="list-group-item list-group-item-action mb-2">
+          <h4 class="mb-1"><%= article.title %></h4>
+          <p class="mb-1"><%= article.description %></p>
+          <p class="mb-1"><%= truncate(article.content, length: 100) %></p>
+          <p class="mb-1"><strong>Autor:</strong> <%= article.author %></p>
+          <p class="mb-1"><strong>Publicado em:</strong> <%= article.published_at.strftime("%d/%m/%Y") if article.published_at.present? %></p>
+          <%= link_to 'Ver Detalhes', article_path(article), class: 'btn btn-info' %>
+        </div>
+      <% end %>
+    </div>
   </div>
+
+  <!-- Inclusão do JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_tag do %>
+    // Carregar a biblioteca do Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+  <% end %>
 </body>
 </html>

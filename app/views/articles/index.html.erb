@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todos os Artigos - Meu Aplicativo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a biblioteca jQuery e o JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">Todos os Artigos</h1>
+
+    <%= link_to 'Novo Artigo', new_article_path, class: 'btn btn-primary mb-3' %>
+
+    <% if @artigos.any? %>
+      <ul class="list-group">
+        <% @artigos.each do |artigo| %>
+          <li class="list-group-item mb-3">
+            <h3><%= artigo.title %></h3>
+            <p><%= artigo.description %></p>
+            <p><%= artigo.content&.truncate(100) || "Conteúdo não disponível" %></p>
+            <p><strong>Autor:</strong> <%= artigo.author_name || "Autor desconhecido" %></p>
+            <p><strong>Publicado em:</strong> <%= artigo.published_at.present? ? artigo.published_at.strftime("%d/%m/%Y") : "Data não disponível" %></p>
+            <%= link_to 'Ver Detalhes', article_path(artigo), class: 'btn btn-info mr-2' %>
+            <%= link_to 'Editar', edit_article_path(artigo), class: 'btn btn-warning' %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="mt-3">Nenhum artigo cadastrado.</p>
+    <% end %>
+  </div>
+</body>
+</html>
