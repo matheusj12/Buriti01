@@ -1,2 +1,0 @@
-class Relatorio < ApplicationRecord
-end

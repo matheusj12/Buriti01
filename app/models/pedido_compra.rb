@@ -1,2 +1,0 @@
-class PedidoCompra < ApplicationRecord
-end
