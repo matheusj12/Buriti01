@@ -5,45 +5,46 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Incluir o CSS do Bootstrap antes do seu CSS -->
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <!-- Mova a linha abaixo para o final -->
+    <!-- Mova o jQuery para o final, após o Bootstrap -->
     <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
-
-    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
-
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% unless controller_name == 'sessions' && action_name == 'new' || controller_name == 'registrations' || controller_name == 'passwords' %>
-      <nav class="navbar custom-navbar navbar-static-top">
+      <nav class="navbar navbar-custom">
         <div class="container">
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right align-items-center">
-              <% if user_signed_in? %>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.email %>
-                  </a>
-                </li>
-                <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-              <% else %>
-                <li><%= link_to "Sign in", new_user_session_path %></li>
-              <% end %>
-              <li class="align-self-center">
-                <%= link_to '#', id: 'theme-toggle', class: 'theme-toggle-button' do %>
-                  <%= image_tag('settings_brightness.svg', alt: 'Toggle Theme', width: 30, height: 30) %>
+            <div class="row w-100">
+              <!-- Coluna 1: Links de navegação -->
+              <div class="col-md-6">
+                <ul class="nav navbar-nav navbar-left">
+                  <li class="nav-item">
+                    <%= link_to 'Home', home_index_path, class: 'nav-link custom-nav-link' %>
+                  </li>
+                  <!-- Adicione outros links aqui -->
+                </ul>
+              </div>
+              <!-- Coluna 2: E-mail do usuário e botão de alternância de tema -->
+              <div class="col-md-6 d-flex align-items-center justify-content-end">
+                <% if user_signed_in? %>
+                  <div class="d-flex align-items-center">
+                    <span class="navbar-text me-3 custom-email"><%= current_user.email %></span>
+                    <%= link_to '#', id: 'theme-toggle', class: 'theme-toggle-button me-3' do %>
+                      <%= image_tag('settings_brightness.svg', alt: 'Toggle Theme', width: 30, height: 30) %>
+                    <% end %>
+                    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-custom' %>
+                  </div>
+                <% else %>
+                  <%= link_to "Sign in", new_user_session_path, class: 'btn btn-custom' %>
                 <% end %>
-              </li>
-            </ul>
-          </div>
-          <div class="navbar-header">
-            <%= button_tag type: "button", class: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar" do %>
-              <span class="sr-only">Toggle navigation</span>
-            <% end %>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Home', home_index_path %></li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

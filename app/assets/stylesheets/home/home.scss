@@ -1,7 +1,69 @@
+/* home.scss */
+
+/* Estilo para elementos com borda de página */
 .page-border {
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  padding: 10px;
+  border: 2px solid #ddd; // Cor e espessura da borda
+  padding: 15px; // Espaço interno ao redor do conteúdo
+  margin: 10px; // Espaço externo ao redor do elemento
+  border-radius: 5px; // Cantos arredondados
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra leve
+}
+
+/* Estilo para links de navegação personalizados */
+.custom-nav-link {
+  font-size: 16px; // Tamanho da fonte
+  font-weight: bold; // Negrito
+  color: #007bff; // Cor personalizada
+  transition: color 0.3s ease; // Transição suave da cor
+}
+
+.custom-nav-link:hover {
+  color: #0056b3; // Cor ao passar o mouse
+}
+
+/* Estilo para o botão de alternância de tema */
+.theme-toggle-button {
+  border: 1px solid #ddd; // Borda leve
+  border-radius: 5px; // Cantos arredondados
+  background-color: #f8f9fa; // Cor de fundo
+  padding: 5px; // Espaço interno
+  transition: background-color 0.3s ease, border-color 0.3s ease; // Transição suave
+}
+
+.theme-toggle-button:hover {
+  background-color: #e2e6ea; // Cor de fundo ao passar o mouse
+  border-color: #ccc; // Cor da borda ao passar o mouse
+}
+
+/* Estilo para o botão de Sign in / Sign out */
+.btn-custom {
+  background-color: #007bff; // Cor de fundo personalizada
+  color: white; // Cor do texto
+  border: none; // Sem borda
+  border-radius: 5px; // Cantos arredondados
+  padding: 10px 15px; // Espaço interno
+  font-size: 16px; // Tamanho da fonte
+  transition: background-color 0.3s ease; // Transição suave da cor de fundo
+}
+
+.btn-custom:hover {
+  background-color: #0056b3; // Cor de fundo ao passar o mouse
+}
+
+/* Regras básicas de responsividade */
+@media (max-width: 768px) {
+  .page-border {
+    padding: 10px; // Menos espaço interno em telas menores
+    margin: 5px; // Menos espaço externo em telas menores
+  }
+
+  .custom-nav-link, .btn-custom {
+    font-size: 14px; // Fonte menor em telas menores
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-custom {
+    padding: 8px 12px; // Menos espaço interno em telas menores
+  }
 }
