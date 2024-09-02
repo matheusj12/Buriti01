@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @titulos_em_aberto %>
+
+<div>
+  <%= link_to "Edit this titulos em aberto", edit_titulos_em_aberto_path(@titulos_em_aberto) %> |
+  <%= link_to "Back to titulos em abertos", titulos_em_abertos_path %>
+
+  <%= button_to "Destroy this titulos em aberto", @titulos_em_aberto, method: :delete %>
+</div>

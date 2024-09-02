@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Gerenciamento contas bancaria" %>
+
+<h1>Gerenciamento contas bancaria</h1>
+
+<div id="gerenciamento_contas_bancaria">
+  <% @gerenciamento_contas_bancaria.each do |gerenciamento_contas_bancarium| %>
+    <%= render gerenciamento_contas_bancarium %>
+    <p>
+      <%= link_to "Show this gerenciamento contas bancarium", gerenciamento_contas_bancarium %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New gerenciamento contas bancarium", new_gerenciamento_contas_bancarium_path %>

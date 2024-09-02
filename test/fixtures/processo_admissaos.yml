@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  funcionario: MyString
+  data_admissao: 2024-08-20
+  cargo: MyString
+  salario: 9.99
+  departamento: MyString
+  status: MyString
+  data_entrega_documentos: 2024-08-20
+
+two:
+  funcionario: MyString
+  data_admissao: 2024-08-20
+  cargo: MyString
+  salario: 9.99
+  departamento: MyString
+  status: MyString
+  data_entrega_documentos: 2024-08-20

@@ -1,0 +1,2 @@
+class AutomacaoTarefa < ApplicationRecord
+end

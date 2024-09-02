@@ -1,0 +1,2 @@
+class TitulosEmAberto < ApplicationRecord
+end

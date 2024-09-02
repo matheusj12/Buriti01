@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meu Aplicativo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Incluir a biblioteca jQuery -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+
+  <!-- Carregar o arquivo JavaScript para alternância de tema -->
+  <%= javascript_include_tag 'application' %>
+
+  <% content_for :stylesheet do %>
+    <%= stylesheet_link_tag 'home/home.css', media: 'all' %>
+  <% end %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+
+  <!-- Incluir a biblioteca do Google Charts -->
+  <%= javascript_include_tag "//www.gstatic.com/charts/loader.js" %>
+
+  <!-- Adicione a linha abaixo -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
+
+</head>
+
+  <body class="chart-grid">
+
+    <div class="page-border">
+      <div class="top-line">
+          <div class="page-border">
+            <div class="top-line">
+              <div class="chart-container main-chart">
+              <!-- Gráfico de pizza com a contagem de produtos por nome -->
+              <%= pie_chart @produto_counts, donut: true, library: { packages: ['corechart'] } %>
+            </div>
+          </div>
+      </div>
+
+      <div class="page-border">
+        <div class="top-line">
+          <div class="chart-container main-chart">
+            <!-- Gráfico de pizza com a contagem de produtos por nome -->
+            <%= pie_chart @produto_counts, donut: true, library: { packages: ['corechart'] } %>
+          </div>
+        </div>
+      </div>
+
+    <%= javascript_tag do %>
+      // Carregar a biblioteca do Google Charts
+      google.charts.load('current', { 'packages': ['corechart'] });
+    <% end %>
+  </body>
+</html>

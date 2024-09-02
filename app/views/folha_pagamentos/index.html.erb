@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Folha pagamentos" %>
+
+<h1>Folha pagamentos</h1>
+
+<div id="folha_pagamentos">
+  <% @folha_pagamentos.each do |folha_pagamento| %>
+    <%= render folha_pagamento %>
+    <p>
+      <%= link_to "Show this folha pagamento", folha_pagamento %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New folha pagamento", new_folha_pagamento_path %>

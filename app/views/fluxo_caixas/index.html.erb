@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Fluxo caixas" %>
+
+<h1>Fluxo caixas</h1>
+
+<div id="fluxo_caixas">
+  <% @fluxo_caixas.each do |fluxo_caixa| %>
+    <%= render fluxo_caixa %>
+    <p>
+      <%= link_to "Show this fluxo caixa", fluxo_caixa %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New fluxo caixa", new_fluxo_caixa_path %>

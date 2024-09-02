@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Incluir a biblioteca jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Carregar o arquivo JavaScript para alternância de tema -->
+
+    <!-- Incluir a referência à folha de estilo específica da view -->
+    <%= yield :stylesheet %>
+    <!-- tema claro e tema escuro -->
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+    <div class="page-border">
+      <div class="top-line"></div>
+        <div id="clients">
+        <%= form_with(model: client, local: true) do |form| %>
+        <% if client.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+            <ul>
+              <% client.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :CPF %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :email %>
+          <%= form.text_field :email %>
+        </div>
+
+        <div class="field">
+          <%= form.label :phone %>
+          <%= form.text_field :phone %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "Novo cliente", new_client_path %>
+  </body>
+</html>

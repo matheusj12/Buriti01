@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Ponto eletronicos" %>
+
+<h1>Ponto eletronicos</h1>
+
+<div id="ponto_eletronicos">
+  <% @ponto_eletronicos.each do |ponto_eletronico| %>
+    <%= render ponto_eletronico %>
+    <p>
+      <%= link_to "Show this ponto eletronico", ponto_eletronico %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ponto eletronico", new_ponto_eletronico_path %>

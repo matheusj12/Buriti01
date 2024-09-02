@@ -1,0 +1,2 @@
+class GerenciamentoContasBancaria < ApplicationRecord
+end

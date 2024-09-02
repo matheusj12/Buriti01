@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aplicativo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Mova a linha abaixo para o final -->
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
+
+  </head>
+
+  <body>
+    <% unless controller_name == 'sessions' && action_name == 'new' || controller_name == 'registrations' || controller_name == 'passwords' %>
+      <nav class="navbar custom-navbar navbar-static-top">
+        <div class="container">
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right align-items-center">
+              <% if user_signed_in? %>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.email %>
+                  </a>
+                </li>
+                <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign in", new_user_session_path %></li>
+              <% end %>
+              <li class="align-self-center">
+                <%= link_to '#', id: 'theme-toggle', class: 'theme-toggle-button' do %>
+                  <%= image_tag('settings_brightness.svg', alt: 'Toggle Theme', width: 30, height: 30) %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <div class="navbar-header">
+            <%= button_tag type: "button", class: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar" do %>
+              <span class="sr-only">Toggle navigation</span>
+            <% end %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Home', home_index_path %></li>
+              <li><%= link_to 'Vendas', vendas_path %></li>
+              <li><%= link_to 'Clientes', clients_path %></li>
+              <li><%= link_to 'Produtos', products_path %></li>
+              <li><%= link_to 'cadastro_ativos', cadastro_ativos_path %></li>
+              <li><%= link_to 'clients', clients_path %></li>
+              <li><%= link_to 'compras', compras_path %></li>
+              <li><%= link_to 'consulta_estoques', consulta_estoques_path %></li>
+              <li><%= link_to 'conta_pagars', conta_pagars_path %></li>
+              <li><%= link_to 'conta_recebers', conta_recebers_path %></li>
+              <li><%= link_to 'departamentos', departamentos_path %></li>
+              <li><%= link_to 'fluxo_caixas', fluxo_caixas_path %></li>
+              <li><%= link_to 'folha_pagamentos', folha_pagamentos_path %></li>
+              <li><%= link_to 'fornecedors', fornecedors_url %></li>
+              <li><%= link_to 'funcionarios', funcionarios_url %></li>
+              <li><%= link_to 'gerenciamento_contas_bancaria', gerenciamento_contas_bancaria_path %></li>
+              <li><%= link_to 'gestao_beneficios', gestao_beneficios_path %></li>
+              <li><%= link_to 'ordem_pagamentos', ordem_pagamentos_path %></li>
+              <li><%= link_to 'pedido_compras', pedido_compras_path %></li>
+              <li><%= link_to 'pedido_vendas', pedido_vendas_path %></li>
+              <li><%= link_to 'ponto_eletronicos', ponto_eletronicos_path %></li>
+              <li><%= link_to 'processo_admissaos', processo_admissaos_path %></li>
+              <li><%= link_to 'products', products_path %></li>
+              <li><%= link_to 'projetos', projetos_path %></li>
+              <li><%= link_to 'relatorios', relatorios_path %></li>
+
+
+              <li><%= link_to 'tesouraria', tesouraria_path %></li>
+              <li><%= link_to 'titulos_baixados', titulos_baixados_path %></li>
+              <li><%= link_to 'titulos_em_abertos', titulos_em_abertos_path %></li>
+
+              <li><%= link_to 'vendas', vendas_path %></li>
+              <li><%= link_to 'automacao_tarefas', automacao_tarefas_path %></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

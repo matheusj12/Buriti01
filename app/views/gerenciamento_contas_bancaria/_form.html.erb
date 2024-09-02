@@ -1,0 +1,52 @@
+<%= form_with(model: gerenciamento_contas_bancarium) do |form| %>
+  <% if gerenciamento_contas_bancarium.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(gerenciamento_contas_bancarium.errors.count, "error") %> prohibited this gerenciamento_contas_bancarium from being saved:</h2>
+
+      <ul>
+        <% gerenciamento_contas_bancarium.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :banco, style: "display: block" %>
+    <%= form.text_field :banco %>
+  </div>
+
+  <div>
+    <%= form.label :agencia, style: "display: block" %>
+    <%= form.text_field :agencia %>
+  </div>
+
+  <div>
+    <%= form.label :conta, style: "display: block" %>
+    <%= form.text_field :conta %>
+  </div>
+
+  <div>
+    <%= form.label :tipo, style: "display: block" %>
+    <%= form.text_field :tipo %>
+  </div>
+
+  <div>
+    <%= form.label :saldo, style: "display: block" %>
+    <%= form.text_field :saldo %>
+  </div>
+
+  <div>
+    <%= form.label :data_abertura, style: "display: block" %>
+    <%= form.date_field :data_abertura %>
+  </div>
+
+  <div>
+    <%= form.label :titular, style: "display: block" %>
+    <%= form.text_field :titular %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

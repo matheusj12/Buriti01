@@ -1,0 +1,53 @@
+/* Estilos para o tema claro */
+body.theme-light {
+  background-color: white;
+  color: black;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+/* Estilos para o tema escuro */
+body.theme-dark {
+  background-color: black;
+  color: white;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+/* Estilos gerais para o corpo do documento */
+body {
+  /* Defina aqui os estilos gerais para o corpo do documento */
+}
+
+.custom-navbar {
+  background-color: #ECEFF1;
+}
+
+.theme-toggle-button {
+  margin-left: 10px; /* Ajuste a margem conforme necessário para alinhar corretamente */
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+/* Estilos específicos para campos de entrada */
+.custom-form-floating input[type="email"],
+.custom-form-floating input[type="password"] {
+  padding: 10px 60px;
+  border-radius: 5px;
+  color: black; /* Cor do texto para campos de e-mail e senha */
+}
+
+/* Estilos adicionais para ambos os temas */
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 0 5px white; /* Adiciona uma sombra vermelha em volta do botão */
+}

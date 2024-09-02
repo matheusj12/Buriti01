@@ -1,0 +1,12 @@
+<% content_for :title, "Editing cadastro ativo" %>
+
+<h1>Editing cadastro ativo</h1>
+
+<%= render "form", cadastro_ativo: @cadastro_ativo %>
+
+<br>
+
+<div>
+  <%= link_to "Show this cadastro ativo", @cadastro_ativo %> |
+  <%= link_to "Back to cadastro ativos", cadastro_ativos_path %>
+</div>

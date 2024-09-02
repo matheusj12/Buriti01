@@ -1,0 +1,2 @@
+class ContaReceber < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class Tesourarium < ApplicationRecord
+end

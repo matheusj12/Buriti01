@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @gestao_beneficio %>
+
+<div>
+  <%= link_to "Edit this gestao beneficio", edit_gestao_beneficio_path(@gestao_beneficio) %> |
+  <%= link_to "Back to gestao beneficios", gestao_beneficios_path %>
+
+  <%= button_to "Destroy this gestao beneficio", @gestao_beneficio, method: :delete %>
+</div>

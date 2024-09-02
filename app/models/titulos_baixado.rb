@@ -1,0 +1,2 @@
+class TitulosBaixado < ApplicationRecord
+end

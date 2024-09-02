@@ -1,0 +1,47 @@
+<%= form_with(model: consulta_estoque) do |form| %>
+  <% if consulta_estoque.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(consulta_estoque.errors.count, "error") %> prohibited this consulta_estoque from being saved:</h2>
+
+      <ul>
+        <% consulta_estoque.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :produto, style: "display: block" %>
+    <%= form.text_field :produto %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade, style: "display: block" %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div>
+    <%= form.label :localizacao, style: "display: block" %>
+    <%= form.text_field :localizacao %>
+  </div>
+
+  <div>
+    <%= form.label :data_entrada, style: "display: block" %>
+    <%= form.date_field :data_entrada %>
+  </div>
+
+  <div>
+    <%= form.label :data_saida, style: "display: block" %>
+    <%= form.date_field :data_saida %>
+  </div>
+
+  <div>
+    <%= form.label :valor_unitario, style: "display: block" %>
+    <%= form.text_field :valor_unitario %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Automacao tarefas" %>
+
+<h1>Automacao tarefas</h1>
+
+<div id="automacao_tarefas">
+  <% @automacao_tarefas.each do |automacao_tarefa| %>
+    <%= render automacao_tarefa %>
+    <p>
+      <%= link_to "Show this automacao tarefa", automacao_tarefa %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New automacao tarefa", new_automacao_tarefa_path %>

@@ -1,0 +1,2 @@
+class PontoEletronico < ApplicationRecord
+end

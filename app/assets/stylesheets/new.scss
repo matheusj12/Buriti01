@@ -1,0 +1,31 @@
+/* Estilos para o botão de login no tema claro */
+.actions input[type="submit"].light {
+  background-color: black;
+  color: white;
+}
+
+/* Estilos para o botão de login no tema escuro */
+.actions input[type="submit"].dark {
+  background-color: white;
+  color: black;
+}
+
+/* Estilos adicionais para ambos os temas */
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 0 5px red; /* Adiciona uma sombra vermelha em volta do botão */
+}
+
+.actions input[type="submit"]:hover {
+  background-color: black;
+}
+
+/* Estilos para o botão de login no tema escuro quando hover */
+.actions input[type="submit"].dark:hover {
+  background-color: white
+}

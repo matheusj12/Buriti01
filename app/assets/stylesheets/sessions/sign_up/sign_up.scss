@@ -1,0 +1,32 @@
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-password {
+    text-align: center;
+  }
+
+  .custom-form-floating {
+    margin-bottom: 10px;
+  }
+
+  .custom-form-floating input {
+    padding: 10px 60px;
+    border-radius: 5px;
+  }
+
+  .actions input[type="submit"] {
+
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+

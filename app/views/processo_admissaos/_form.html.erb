@@ -1,0 +1,52 @@
+<%= form_with(model: processo_admissao) do |form| %>
+  <% if processo_admissao.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(processo_admissao.errors.count, "error") %> prohibited this processo_admissao from being saved:</h2>
+
+      <ul>
+        <% processo_admissao.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :funcionario, style: "display: block" %>
+    <%= form.text_field :funcionario %>
+  </div>
+
+  <div>
+    <%= form.label :data_admissao, style: "display: block" %>
+    <%= form.date_field :data_admissao %>
+  </div>
+
+  <div>
+    <%= form.label :cargo, style: "display: block" %>
+    <%= form.text_field :cargo %>
+  </div>
+
+  <div>
+    <%= form.label :salario, style: "display: block" %>
+    <%= form.text_field :salario %>
+  </div>
+
+  <div>
+    <%= form.label :departamento, style: "display: block" %>
+    <%= form.text_field :departamento %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :data_entrega_documentos, style: "display: block" %>
+    <%= form.date_field :data_entrega_documentos %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

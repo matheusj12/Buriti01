@@ -1,0 +1,2 @@
+class ProcessoAdmissao < ApplicationRecord
+end

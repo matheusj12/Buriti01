@@ -1,0 +1,2 @@
+module GestaoBeneficiosHelper
+end

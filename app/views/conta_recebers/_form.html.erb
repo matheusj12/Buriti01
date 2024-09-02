@@ -1,0 +1,47 @@
+<%= form_with(model: conta_receber) do |form| %>
+  <% if conta_receber.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(conta_receber.errors.count, "error") %> prohibited this conta_receber from being saved:</h2>
+
+      <ul>
+        <% conta_receber.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :cliente, style: "display: block" %>
+    <%= form.text_field :cliente %>
+  </div>
+
+  <div>
+    <%= form.label :data_vencimento, style: "display: block" %>
+    <%= form.date_field :data_vencimento %>
+  </div>
+
+  <div>
+    <%= form.label :valor, style: "display: block" %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div>
+    <%= form.label :descricao, style: "display: block" %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :data_recebimento, style: "display: block" %>
+    <%= form.date_field :data_recebimento %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

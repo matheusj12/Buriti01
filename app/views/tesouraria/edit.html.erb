@@ -1,0 +1,12 @@
+<% content_for :title, "Editing tesourarium" %>
+
+<h1>Editing tesourarium</h1>
+
+<%= render "form", tesourarium: @tesourarium %>
+
+<br>
+
+<div>
+  <%= link_to "Show this tesourarium", @tesourarium %> |
+  <%= link_to "Back to tesouraria", tesouraria_path %>
+</div>

@@ -1,0 +1,2 @@
+class PedidoCompra < ApplicationRecord
+end

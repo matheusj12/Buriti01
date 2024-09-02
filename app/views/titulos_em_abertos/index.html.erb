@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Titulos em abertos" %>
+
+<h1>Titulos em abertos</h1>
+
+<div id="titulos_em_abertos">
+  <% @titulos_em_abertos.each do |titulos_em_aberto| %>
+    <%= render titulos_em_aberto %>
+    <p>
+      <%= link_to "Show this titulos em aberto", titulos_em_aberto %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New titulos em aberto", new_titulos_em_aberto_path %>

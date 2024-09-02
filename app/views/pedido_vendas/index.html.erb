@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Pedido vendas" %>
+
+<h1>Pedido vendas</h1>
+
+<div id="pedido_vendas">
+  <% @pedido_vendas.each do |pedido_venda| %>
+    <%= render pedido_venda %>
+    <p>
+      <%= link_to "Show this pedido venda", pedido_venda %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pedido venda", new_pedido_venda_path %>

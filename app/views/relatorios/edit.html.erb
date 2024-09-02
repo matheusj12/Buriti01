@@ -1,0 +1,12 @@
+<% content_for :title, "Editing relatorio" %>
+
+<h1>Editing relatorio</h1>
+
+<%= render "form", relatorio: @relatorio %>
+
+<br>
+
+<div>
+  <%= link_to "Show this relatorio", @relatorio %> |
+  <%= link_to "Back to relatorios", relatorios_path %>
+</div>

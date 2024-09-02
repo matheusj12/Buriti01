@@ -1,0 +1,2 @@
+class GestaoBeneficio < ApplicationRecord
+end

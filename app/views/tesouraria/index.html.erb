@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Tesouraria" %>
+
+<h1>Tesouraria</h1>
+
+<div id="tesouraria">
+  <% @tesouraria.each do |tesourarium| %>
+    <%= render tesourarium %>
+    <p>
+      <%= link_to "Show this tesourarium", tesourarium %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tesourarium", new_tesourarium_path %>

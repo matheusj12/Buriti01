@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  produto: MyString
+  quantidade: 1
+  localizacao: MyString
+  data_entrada: 2024-08-20
+  data_saida: 2024-08-20
+  valor_unitario: 9.99
+
+two:
+  produto: MyString
+  quantidade: 1
+  localizacao: MyString
+  data_entrada: 2024-08-20
+  data_saida: 2024-08-20
+  valor_unitario: 9.99

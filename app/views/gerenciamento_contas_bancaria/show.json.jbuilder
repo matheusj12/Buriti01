@@ -1,0 +1,1 @@
+json.partial! "gerenciamento_contas_bancaria/gerenciamento_contas_bancarium", gerenciamento_contas_bancarium: @gerenciamento_contas_bancarium

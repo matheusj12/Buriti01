@@ -1,0 +1,2 @@
+class ConsultaEstoque < ApplicationRecord
+end

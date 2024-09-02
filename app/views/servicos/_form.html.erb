@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Incluir a biblioteca jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Carregar o arquivo JavaScript para alternância de tema -->
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+  <!-- tema claro e tema escuro -->
+  <%= javascript_include_tag 'application' %>
+</head>
+
+<body>
+
+  <%= form_with(model: @servico, local: true) do |form| %>
+    <% if @servico.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@servico.errors.count, "error") %> prohibited this service from being saved:</h2>
+        <ul>
+          <% @servico.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <br>
+
+    <div class="field">
+      <%= form.label :nome %>
+      <%= form.text_field :nome %>
+    </div>
+
+    <div class="field">
+      <%= form.label :descricao %>
+      <%= form.text_area :descricao %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
+  <%= link_to "Novo Serviço", new_servico_path %>
+
+</body>
+
+</html>

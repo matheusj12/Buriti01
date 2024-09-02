@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fornecedor: MyString
+  data_vencimento: 2024-08-20
+  valor: 9.99
+  descricao: MyText
+  status: MyString
+  data_pagamento: 2024-08-20
+
+two:
+  fornecedor: MyString
+  data_vencimento: 2024-08-20
+  valor: 9.99
+  descricao: MyText
+  status: MyString
+  data_pagamento: 2024-08-20

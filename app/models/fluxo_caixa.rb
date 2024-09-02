@@ -1,0 +1,2 @@
+class FluxoCaixa < ApplicationRecord
+end

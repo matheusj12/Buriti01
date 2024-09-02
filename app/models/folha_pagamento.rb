@@ -1,0 +1,2 @@
+class FolhaPagamento < ApplicationRecord
+end
