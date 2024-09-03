@@ -1,20 +1,62 @@
-<%= form_with(model: stock_control, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :impressora_id, "Impressora" %>
-    <%= form.collection_select :impressora_id, Impressora.all, :id, :modelo, { prompt: 'Select Impressora' }, class: 'form-control' %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : 'Meu Aplicativo' %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Incluir a biblioteca jQuery -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+
+  <!-- Incluir a biblioteca do Google Charts -->
+  <%= javascript_include_tag '//www.gstatic.com/charts/loader.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h1><%= content_for?(:title) ? yield(:title) : 'Controle de Estoque' %></h1>
+
+    <%= form_with(model: stock_control, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :impressora_id, "Impressora" %>
+        <%= form.collection_select :impressora_id, Impressora.all, :id, :modelo, { prompt: 'Selecione a Impressora' }, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :quantity, "Quantidade" %>
+        <%= form.number_field :quantity, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :operation_type, "Tipo de Operação" %>
+        <%= form.select :operation_type, options_for_select([['Entrada', 'entrada'], ['Saída', 'saída']]), {}, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, class: 'form-control' %>
-  </div>
+  <!-- Inclusão do JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
 
-  <div class="form-group">
-    <%= form.label :operation_type %>
-    <%= form.select :operation_type, options_for_select([['Entrada', 'entrada'], ['Saída', 'saída']]), {}, class: 'form-control' %>
-  </div>
+  <%= javascript_tag do %>
+    // Carregar a biblioteca do Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+  <% end %>
 
-  <div class="form-group">
-    <%= form.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</body>
+</html>
