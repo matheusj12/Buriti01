@@ -1,0 +1,26 @@
+<h1>Stock Controls</h1>
+
+<%= link_to 'New Stock Control', new_stock_control_path, class: 'btn btn-primary' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Impressora</th>
+      <th>Quantity</th>
+      <th>Operation Type</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_controls.each do |stock_control| %>
+      <tr>
+        <td><%= stock_control.impressora.modelo %></td>
+        <td><%= stock_control.quantity %></td>
+        <td><%= stock_control.operation_type %></td>
+        <td><%= link_to 'Show', stock_control %></td>
+        <td><%= link_to 'Edit', edit_stock_control_path(stock_control) %></td>
+        <td><%= button_to 'Destroy', stock_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

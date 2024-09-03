@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  impressora: one
+  quantity: 1
+  operation_type: MyString
+
+two:
+  impressora: two
+  quantity: 1
+  operation_type: MyString

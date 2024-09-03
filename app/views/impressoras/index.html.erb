@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : 'Meu Aplicativo' %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Incluir a biblioteca jQuery -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+
+  <!-- Incluir a biblioteca do Google Charts -->
+  <%= javascript_include_tag '//www.gstatic.com/charts/loader.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h1><%= content_for?(:title) ? yield(:title) : 'Impressoras' %></h1>
+
+    <% if notice.present? %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <div id="impressoras">
+      <% @impressoras.each do |impressora| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= impressora.modelo %></h5>
+            <p class="card-text">
+              <strong>Departamento:</strong> <%= impressora.departamento %><br>
+              <strong>Loja:</strong> <%= impressora.loja %><br>
+              <strong>Proprietário:</strong> <%= impressora.proprietario %><br>
+              <strong>Modelo:</strong> <%= impressora.modelo %><br>
+              <strong>Num. Patrimônio:</strong> <%= impressora.nPatrimonio %><br>
+              <strong>Num. Série:</strong> <%= impressora.nSerie %><br>
+              <strong>Num. GPS:</strong> <%= impressora.nGps %><br>
+              <strong>Modelo do Toner:</strong> <%= impressora.tonerModelo %><br>
+              <strong>Ativa:</strong> <%= impressora.ativa ? 'Sim' : 'Não' %><br>
+              <strong>Tempo de Uso:</strong> <%= impressora.tempodeuso %><br>
+              <strong>Info:</strong> <%= impressora.info %><br>
+              <strong>Info1:</strong> <%= impressora.info1 %><br>
+              <strong>Info3:</strong> <%= impressora.info3 %><br>
+              <strong>Info4:</strong> <%= impressora.info4 %><br>
+              <strong>Info5:</strong> <%= impressora.info5 %><br>
+            </p>
+            <%= link_to "Show this impressora", impressora, class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "New impressora", new_impressora_path, class: "btn btn-success mt-3" %>
+  </div>
+
+  <!-- Inclusão do JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_tag do %>
+    // Carregar a biblioteca do Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+  <% end %>
+
+</body>
+</html>
