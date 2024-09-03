@@ -1,5 +1,45 @@
-<h1>New Stock Control</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : 'Novo Controle de Estoque' %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= render 'form', stock_control: @stock_control %>
+  <!-- Incluir a biblioteca jQuery -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
 
-<%= link_to 'Back', stock_controls_path, class: 'btn btn-secondary' %>
+  <!-- Incluir a biblioteca do Google Charts -->
+  <%= javascript_include_tag '//www.gstatic.com/charts/loader.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h1>Criar Novo Controle de Estoque</h1>
+
+    <%= render 'form', stock_control: @stock_control %>
+
+    <%= link_to 'Voltar', stock_controls_path, class: 'btn btn-secondary mt-3' %>
+  </div>
+
+  <!-- Inclusão do JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_tag do %>
+    // Carregar a biblioteca do Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+  <% end %>
+
+</body>
+</html>

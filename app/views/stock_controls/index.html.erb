@@ -1,26 +1,84 @@
-<h1>Stock Controls</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : 'Controles de Estoque' %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%= link_to 'New Stock Control', new_stock_control_path, class: 'btn btn-primary' %>
+  <!-- Incluir a biblioteca jQuery -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Impressora</th>
-      <th>Quantity</th>
-      <th>Operation Type</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @stock_controls.each do |stock_control| %>
-      <tr>
-        <td><%= stock_control.impressora.modelo %></td>
-        <td><%= stock_control.quantity %></td>
-        <td><%= stock_control.operation_type %></td>
-        <td><%= link_to 'Show', stock_control %></td>
-        <td><%= link_to 'Edit', edit_stock_control_path(stock_control) %></td>
-        <td><%= button_to 'Destroy', stock_control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- Incluir a biblioteca do Google Charts -->
+  <%= javascript_include_tag '//www.gstatic.com/charts/loader.js' %>
+
+  <!-- Carregar o arquivo JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir o CSS do Bootstrap -->
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Carregar o arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Incluir a referência à folha de estilo específica da view -->
+  <%= yield :stylesheet %>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h1>Controles de Estoque</h1>
+
+    <%= link_to 'Novo Controle de Estoque', new_stock_control_path, class: 'btn btn-primary mb-3' %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Impressora</th>
+          <th>Quantidade</th>
+          <th>Tipo de Operação</th>
+          <th colspan="4">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stock_controls.each do |stock_control| %>
+          <tr>
+            <td><%= stock_control.impressora.modelo %></td>
+            <td>
+<%= form_with(model: @stock_control, local: true) do |form| %>
+  <div class="input-group mb-3">
+    <%= form.label :quantity, 'Quantidade', class: 'input-group-text' %>
+    <%= form.number_field :quantity, class: 'form-control', min: 0 %>
+    <div class="input-group-append">
+      <%= button_tag type: 'submit', name: 'operation', value: 'increase', class: 'btn btn-success' do %>
+        Aumentar
+      <% end %>
+      <%= button_tag type: 'submit', name: 'operation', value: 'decrease', class: 'btn btn-warning' do %>
+        Diminuir
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+<% end %>
+
+            </td>
+            <td><%= stock_control.operation_type.capitalize %></td>
+            <td><%= link_to 'Mostrar', stock_control, class: 'btn btn-info btn-sm' %></td>
+            <td><%= link_to 'Editar', edit_stock_control_path(stock_control), class: 'btn btn-warning btn-sm' %></td>
+            <td><%= button_to 'Excluir', stock_control, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Inclusão do JavaScript do Bootstrap -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+  <%= javascript_tag do %>
+    // Carregar a biblioteca do Google Charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+  <% end %>
+
+</body>
+</html>

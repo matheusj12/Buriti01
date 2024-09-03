@@ -41,9 +41,14 @@ class StockControlsController < ApplicationController
   # PATCH/PUT /stock_controls/1.json
   def update
     respond_to do |format|
-      if @stock_control.update(stock_control_params)
-        format.html { redirect_to @stock_control, notice: 'Stock control was successfully updated.' }
-        format.json { render :show, status: :ok, location: @stock_control }
+      if update_quantity
+        if @stock_control.save
+          format.html { redirect_to @stock_control, notice: 'Stock control was successfully updated.' }
+          format.json { render :show, status: :ok, location: @stock_control }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @stock_control.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @stock_control.errors, status: :unprocessable_entity }
