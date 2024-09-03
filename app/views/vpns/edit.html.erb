@@ -1,0 +1,12 @@
+<% content_for :title, "Editing VPN" %>
+
+<h1>Editing VPN</h1>
+
+<%= render "form", vpn: @vpn %>
+
+<br>
+
+<div>
+  <%= link_to "Show this VPN", @vpn, class: "btn btn-info" %> |
+  <%= link_to "Back to VPNs", vpns_path, class: "btn btn-secondary" %>
+</div>

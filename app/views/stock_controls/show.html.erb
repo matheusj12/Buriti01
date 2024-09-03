@@ -1,0 +1,19 @@
+<h1>Stock Control</h1>
+
+<p>
+  <strong>Impressora:</strong>
+  <%= @stock_control.impressora.modelo %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @stock_control.quantity %>
+</p>
+
+<p>
+  <strong>Operation Type:</strong>
+  <%= @stock_control.operation_type %>
+</p>
+
+<%= link_to 'Edit', edit_stock_control_path(@stock_control), class: 'btn btn-primary' %>
+<%= link_to 'Back', stock_controls_path, class: 'btn btn-secondary' %>
