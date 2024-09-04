@@ -28,18 +28,50 @@
   <div class="container mt-4">
     <h1>Criar Novo Controle de Estoque</h1>
 
-    <%= render 'form', stock_control: @stock_control %>
+    <%= form_with(model: @stock_control, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :impressora_id, 'Impressora' %>
+        <%= form.collection_select :impressora_id, Impressora.all, :id, :modelo, { prompt: 'Selecione a impressora' }, class: 'form-control' %>
+      </div>
 
-    <%= link_to 'Voltar', stock_controls_path, class: 'btn btn-secondary mt-3' %>
+      <div class="form-group">
+        <%= form.label :ciano, 'Quantidade Ciano' %>
+        <%= form.number_field :ciano, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :magenta, 'Quantidade Magenta' %>
+        <%= form.number_field :magenta, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :amarelo, 'Quantidade Amarelo' %>
+        <%= form.number_field :amarelo, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :preto, 'Quantidade Preto' %>
+        <%= form.number_field :preto, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :operation_type, 'Tipo de Operação' %>
+        <%= form.select :operation_type, options_for_select(['entrada', 'saída']), { prompt: 'Selecione o tipo de operação' }, class: 'form-control' %>
+      </div>
+
+      <%= form.submit 'Criar Controle de Estoque', class: 'btn btn-primary' %>
+      <%= link_to 'Voltar', stock_controls_path, class: 'btn btn-secondary' %>
+    <% end %>
+
+    <!-- Inclusão do JavaScript do Bootstrap -->
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_tag do %>
+      // Carregar a biblioteca do Google Charts
+      google.charts.load('current', { 'packages': ['corechart'] });
+    <% end %>
+
   </div>
-
-  <!-- Inclusão do JavaScript do Bootstrap -->
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
-
-  <%= javascript_tag do %>
-    // Carregar a biblioteca do Google Charts
-    google.charts.load('current', { 'packages': ['corechart'] });
-  <% end %>
 
 </body>
 </html>

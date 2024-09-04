@@ -9,8 +9,11 @@ class StockControlsController < ApplicationController
 
   # GET /stock_controls/1
   # GET /stock_controls/1.json
-  def show
-  end
+
+    def show
+      @stock_control = StockControl.find(params[:id])
+      @stock_movements = @stock_control.stock_movements
+    end
 
   # GET /stock_controls/new
   def new
@@ -28,10 +31,11 @@ class StockControlsController < ApplicationController
 
     respond_to do |format|
       if @stock_control.save
-        format.html { redirect_to @stock_control, notice: 'Stock control was successfully created.' }
+        create_stock_movements
+        format.html { redirect_to @stock_control, notice: 'Controle de estoque criado com sucesso.' }
         format.json { render :show, status: :created, location: @stock_control }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @stock_control.errors, status: :unprocessable_entity }
       end
     end
@@ -41,16 +45,12 @@ class StockControlsController < ApplicationController
   # PATCH/PUT /stock_controls/1.json
   def update
     respond_to do |format|
-      if update_quantity
-        if @stock_control.save
-          format.html { redirect_to @stock_control, notice: 'Stock control was successfully updated.' }
-          format.json { render :show, status: :ok, location: @stock_control }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @stock_control.errors, status: :unprocessable_entity }
-        end
+      if @stock_control.update(stock_control_params)
+        create_stock_movements
+        format.html { redirect_to @stock_control, notice: 'Controle de estoque atualizado com sucesso.' }
+        format.json { render :show, status: :ok, location: @stock_control }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @stock_control.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +61,7 @@ class StockControlsController < ApplicationController
   def destroy
     @stock_control.destroy
     respond_to do |format|
-      format.html { redirect_to stock_controls_url, notice: 'Stock control was successfully destroyed.' }
+      format.html { redirect_to stock_controls_url, notice: 'Controle de estoque excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +74,16 @@ class StockControlsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stock_control_params
-      params.require(:stock_control).permit(:impressora_id, :quantity, :operation_type)
+      params.require(:stock_control).permit(:impressora_id, :ciano, :magenta, :amarelo, :preto, :operation_type)
+    end
+
+    def create_stock_movements
+      %w[ciano magenta amarelo preto].each do |color|
+        StockMovement.create(
+          stock_control: @stock_control,
+          quantity: @stock_control.send(color),
+          movement_type: @stock_control.operation_type
+        )
+      end
     end
 end

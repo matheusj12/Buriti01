@@ -23,39 +23,40 @@
   <!-- Incluir a referência à folha de estilo específica da view -->
   <%= yield :stylesheet %>
 </head>
-<body>
-
-  <div class="container mt-4">
-    <h1>Detalhes do Controle de Estoque</h1>
-
-    <div class="mb-3">
-      <p>
-        <strong>Impressora:</strong>
-        <%= @stock_control.impressora.modelo %>
-      </p>
-
-      <p>
-        <strong>Quantidade:</strong>
-        <%= @stock_control.quantity %>
-      </p>
-
-      <p>
-        <strong>Tipo de Operação:</strong>
-        <%= @stock_control.operation_type %>
-      </p>
-    </div>
-
     <%= link_to 'Editar', edit_stock_control_path(@stock_control), class: 'btn btn-primary' %>
     <%= link_to 'Voltar', stock_controls_path, class: 'btn btn-secondary' %>
+    <h1>Histórico de Movimentos de Estoque</h1>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Controle de Estoque</th>
+      <th>Quantidade</th>
+      <th>Tipo de Movimentação</th>
+      <th>Criado em</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_movements.each do |movement| %>
+      <tr>
+        <td><%= movement.stock_control.id %></td>
+        <td><%= movement.quantity %></td>
+        <td><%= movement.movement_type %></td>
+        <td><%= movement.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <!-- Inclusão do JavaScript do Bootstrap -->
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_tag do %>
+      // Carregar a biblioteca do Google Charts
+      google.charts.load('current', { 'packages': ['corechart'] });
+    <% end %>
+
   </div>
-
-  <!-- Inclusão do JavaScript do Bootstrap -->
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
-
-  <%= javascript_tag do %>
-    // Carregar a biblioteca do Google Charts
-    google.charts.load('current', { 'packages': ['corechart'] });
-  <% end %>
 
 </body>
 </html>

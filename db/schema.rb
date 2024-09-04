@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_03_130204) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_04_125837) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -231,6 +231,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_03_130204) do
     t.string "toner_foto"
     t.integer "toner_quantity"
     t.integer "stock"
+    t.integer "preto_quantity"
+    t.integer "ciano_quantity"
+    t.integer "magenta_quantity"
+    t.integer "amarelo_quantity"
+    t.string "ip"
   end
 
   create_table "ordem_pagamentos", force: :cascade do |t|
@@ -331,7 +336,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_03_130204) do
     t.string "operation_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "preto_quantity"
+    t.integer "ciano_quantity"
+    t.integer "magenta_quantity"
+    t.integer "amarelo_quantity"
+    t.integer "ciano"
+    t.integer "magenta"
+    t.integer "amarelo"
+    t.integer "preto"
     t.index ["impressora_id"], name: "index_stock_controls_on_impressora_id"
+  end
+
+  create_table "stock_movements", force: :cascade do |t|
+    t.integer "stock_control_id", null: false
+    t.integer "quantity"
+    t.string "movement_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_control_id"], name: "index_stock_movements_on_stock_control_id"
   end
 
   create_table "tesouraria", force: :cascade do |t|
@@ -401,4 +423,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_03_130204) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "stock_controls", "impressoras"
+  add_foreign_key "stock_movements", "stock_controls"
 end

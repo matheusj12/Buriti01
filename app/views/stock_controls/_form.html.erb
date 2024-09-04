@@ -1,62 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%= content_for?(:title) ? yield(:title) : 'Meu Aplicativo' %></title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <!-- Incluir a biblioteca jQuery -->
-  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
-
-  <!-- Incluir a biblioteca do Google Charts -->
-  <%= javascript_include_tag '//www.gstatic.com/charts/loader.js' %>
-
-  <!-- Carregar o arquivo JavaScript principal -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Incluir o CSS do Bootstrap -->
-  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Incluir a referência à folha de estilo específica da view -->
-  <%= yield :stylesheet %>
-</head>
-<body>
-
-  <div class="container mt-4">
-    <h1><%= content_for?(:title) ? yield(:title) : 'Controle de Estoque' %></h1>
-
-    <%= form_with(model: stock_control, local: true) do |form| %>
-      <div class="form-group">
-        <%= form.label :impressora_id, "Impressora" %>
-        <%= form.collection_select :impressora_id, Impressora.all, :id, :modelo, { prompt: 'Selecione a Impressora' }, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :quantity, "Quantidade" %>
-        <%= form.number_field :quantity, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :operation_type, "Tipo de Operação" %>
-        <%= form.select :operation_type, options_for_select([['Entrada', 'entrada'], ['Saída', 'saída']]), {}, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.submit 'Salvar', class: 'btn btn-primary' %>
-      </div>
-    <% end %>
+<%= form_with(model: @stock_control, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :impressora_id, 'Impressora' %>
+    <%= form.collection_select :impressora_id, Impressora.all, :id, :modelo, { prompt: 'Selecione a impressora' }, class: 'form-control' %>
   </div>
 
-  <!-- Inclusão do JavaScript do Bootstrap -->
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+  <div class="form-group">
+    <%= form.label :ciano, 'Quantidade Ciano' %>
+    <%= form.number_field :ciano, class: 'form-control', step: 1 %>
+  </div>
 
-  <%= javascript_tag do %>
-    // Carregar a biblioteca do Google Charts
-    google.charts.load('current', { 'packages': ['corechart'] });
-  <% end %>
+  <div class="form-group">
+    <%= form.label :magenta, 'Quantidade Magenta' %>
+    <%= form.number_field :magenta, class: 'form-control', step: 1 %>
+  </div>
 
-</body>
-</html>
+  <div class="form-group">
+    <%= form.label :amarelo, 'Quantidade Amarelo' %>
+    <%= form.number_field :amarelo, class: 'form-control', step: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :preto, 'Quantidade Preto' %>
+    <%= form.number_field :preto, class: 'form-control', step: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :operation_type, 'Tipo de Operação' %>
+    <%= form.select :operation_type, options_for_select(['entrada', 'saída'], @stock_control.operation_type), { prompt: 'Selecione o tipo de operação' }, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+  <%= link_to 'Cancelar', stock_controls_path, class: 'btn btn-secondary' %>
+<% end %>
