@@ -23,30 +23,57 @@
   <!-- Incluir a referência à folha de estilo específica da view -->
   <%= yield :stylesheet %>
 </head>
+<body>
+  <div class="container">
     <%= link_to 'Editar', edit_stock_control_path(@stock_control), class: 'btn btn-primary' %>
     <%= link_to 'Voltar', stock_controls_path, class: 'btn btn-secondary' %>
     <h1>Histórico de Movimentos de Estoque</h1>
-<body>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Controle de Estoque</th>
-      <th>Quantidade</th>
-      <th>Tipo de Movimentação</th>
-      <th>Criado em</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @stock_movements.each do |movement| %>
-      <tr>
-        <td><%= movement.stock_control.id %></td>
-        <td><%= movement.quantity %></td>
-        <td><%= movement.movement_type %></td>
-        <td><%= movement.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Cor</th>
+          <th>Quantidade</th>
+          <th>Tipo de Movimentação</th>
+          <th>Criado em</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @stock_movements.present? %>
+          <% @stock_movements.each do |movement| %>
+            <% # Adapte essas variáveis para refletir os atributos corretos do seu modelo %>
+            <tr>
+              <td>Ciano</td>
+              <td><%= movement.ciano %></td>
+              <td><%= movement.movement_type %></td>
+              <td><%= movement.created_at %></td>
+            </tr>
+            <tr>
+              <td>Magenta</td>
+              <td><%= movement.magenta %></td>
+              <td><%= movement.movement_type %></td>
+              <td><%= movement.created_at %></td>
+            </tr>
+            <tr>
+              <td>Amarelo</td>
+              <td><%= movement.amarelo %></td>
+              <td><%= movement.movement_type %></td>
+              <td><%= movement.created_at %></td>
+            </tr>
+            <tr>
+              <td>Preto</td>
+              <td><%= movement.preto %></td>
+              <td><%= movement.movement_type %></td>
+              <td><%= movement.created_at %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4">Nenhum movimento de estoque encontrado.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
     <!-- Inclusão do JavaScript do Bootstrap -->
     <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
@@ -55,8 +82,6 @@
       // Carregar a biblioteca do Google Charts
       google.charts.load('current', { 'packages': ['corechart'] });
     <% end %>
-
   </div>
-
 </body>
 </html>
