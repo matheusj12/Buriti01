@@ -28,33 +28,46 @@
   <div class="container mt-4">
     <p class="text-success"><%= notice %></p>
 
-    <div id="<%= dom_id @impressora %>">
-      <%= render @impressora %>
-    </div>
+    <div id="<%= dom_id @impressora %>" class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title"><%= @impressora.modelo %></h2>
 
-    <p>
-  <strong>Foto da Impressora:</strong>
-  <% if @impressora.foto.attached? %>
-    <%= image_tag @impressora.foto %>
-  <% else %>
-    No photo available
-  <% end %>
-</p>
+        <p class="card-text">
+          <strong>Modelo:</strong> <%= @impressora.modelo %><br>
+          <strong>Proprietário:</strong> <%= @impressora.proprietario %><br>
+          <strong>Local:</strong> <%= @impressora.departamento %>
+        </p>
 
-<p>
-  <strong>Foto do Toner:</strong>
-  <% if @impressora.toner_foto.attached? %>
-    <%= image_tag @impressora.toner_foto %>
-  <% else %>
-    No photo available
-  <% end %>
-</p>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              <strong>Foto da Impressora:</strong><br>
+              <% if @impressora.foto.attached? %>
+                <%= image_tag @impressora.foto, class: "img-fluid rounded mt-2" %>
+              <% else %>
+                <span class="text-muted">No photo available</span>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <strong>Foto do Toner:</strong><br>
+              <% if @impressora.toner_foto.attached? %>
+                <%= image_tag @impressora.toner_foto, class: "img-fluid rounded mt-2" %>
+              <% else %>
+                <span class="text-muted">No photo available</span>
+              <% end %>
+            </p>
+          </div>
+        </div>
 
-    <div class="mt-3">
-      <%= link_to "Edit this impressora", edit_impressora_path(@impressora), class: "btn btn-warning" %> |
-      <%= link_to "Back to impressoras", impressoras_path, class: "btn btn-secondary" %>
+        <div class="mt-3">
+          <%= link_to "Edit this impressora", edit_impressora_path(@impressora), class: "btn btn-warning" %> |
+          <%= link_to "Back to impressoras", impressoras_path, class: "btn btn-secondary" %>
 
-      <%= button_to "Destroy this impressora", @impressora, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <%= button_to "Destroy this impressora", @impressora, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger ml-2" %>
+        </div>
+      </div>
     </div>
   </div>
 
