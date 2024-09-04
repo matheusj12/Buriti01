@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for?(:title) ? yield(:title) : 'Controles de Estoque' %></title>
+  <title><%= content_for?(:title) ? yield(:title) : 'Controle de Estoque' %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -26,50 +26,40 @@
 <body>
 
   <div class="container mt-4">
-    <h1>Controles de Estoque</h1>
-
-    <%= link_to 'Novo Controle de Estoque', new_stock_control_path, class: 'btn btn-primary mb-3' %>
+    <h1>Controle de Estoque</h1>
 
     <table class="table">
       <thead>
         <tr>
           <th>Impressora</th>
-          <th>Quantidade</th>
+          <th>Quantidade Ciano</th>
+          <th>Quantidade Magenta</th>
+          <th>Quantidade Amarelo</th>
+          <th>Quantidade Preto</th>
           <th>Tipo de Operação</th>
-          <th colspan="4">Ações</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <% @stock_controls.each do |stock_control| %>
           <tr>
             <td><%= stock_control.impressora.modelo %></td>
-            <td>
-<%= form_with(model: @stock_control, local: true) do |form| %>
-  <div class="input-group mb-3">
-    <%= form.label :quantity, 'Quantidade', class: 'input-group-text' %>
-    <%= form.number_field :quantity, class: 'form-control', min: 0 %>
-    <div class="input-group-append">
-      <%= button_tag type: 'submit', name: 'operation', value: 'increase', class: 'btn btn-success' do %>
-        Aumentar
-      <% end %>
-      <%= button_tag type: 'submit', name: 'operation', value: 'decrease', class: 'btn btn-warning' do %>
-        Diminuir
-      <% end %>
-    </div>
-  </div>
-
-  <%= form.submit 'Salvar', class: 'btn btn-primary' %>
-<% end %>
-
-            </td>
+            <td><%= stock_control.ciano %></td>
+            <td><%= stock_control.magenta %></td>
+            <td><%= stock_control.amarelo %></td>
+            <td><%= stock_control.preto %></td>
             <td><%= stock_control.operation_type.capitalize %></td>
-            <td><%= link_to 'Mostrar', stock_control, class: 'btn btn-info btn-sm' %></td>
-            <td><%= link_to 'Editar', edit_stock_control_path(stock_control), class: 'btn btn-warning btn-sm' %></td>
-            <td><%= button_to 'Excluir', stock_control, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' %></td>
+            <td>
+              <%= link_to 'Mostrar', stock_control_path(stock_control), class: 'btn btn-info btn-sm' %>
+              <%= link_to 'Editar', edit_stock_control_path(stock_control), class: 'btn btn-primary btn-sm' %>
+              <%= link_to 'Excluir', stock_control_path(stock_control), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+
+    <%= link_to 'Voltar', root_path, class: 'btn btn-secondary mt-3' %>
   </div>
 
   <!-- Inclusão do JavaScript do Bootstrap -->
@@ -80,5 +70,4 @@
     google.charts.load('current', { 'packages': ['corechart'] });
   <% end %>
 
-</body>
-</html>
+</body
