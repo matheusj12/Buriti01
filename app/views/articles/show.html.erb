@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @article.title %> - Meu Aplicativo</title>
+  <title><%= @article.title %> - Detalhes do Artigo</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -17,26 +17,26 @@
 
   <!-- Carregar o arquivo JavaScript principal -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Incluir a referência à folha de estilo específica da view -->
-  <%= yield :stylesheet %>
 </head>
 
 <body>
   <div class="container mt-4">
     <h1 class="mb-4"><%= @article.title %></h1>
 
-    <div class="mb-3">
-      <p><strong>Descrição:</strong> <%= @article.description %></p>
-      <p><strong>Conteúdo:</strong> <%= @article.content %></p>
-      <p><strong>Autor:</strong> <%= @article.author_name %></p>
-      <p><strong>Publicado em:</strong> <%= @article.published_at.strftime("%d/%m/%Y %H:%M") if @article.published_at.present? %></p>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Detalhes do Artigo</h5>
+        <p class="card-text"><strong>Autor:</strong> <%= @article.author || "Autor desconhecido" %></p>
+        <p class="card-text"><strong>Conteúdo:</strong> <%= @article.body || "Conteúdo não disponível" %></p>
+        <p class="card-text"><strong>Publicado em:</strong> <%= @article.published_at.present? ? @article.published_at.strftime("%d/%m/%Y") : "Data não disponível" %></p>
+        <p class="card-text"><strong>Tags:</strong> <%= @article.tags || "Sem tags" %></p>
+      </div>
     </div>
 
-    <!-- Links de ação -->
-    <div class="mb-3">
-      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-warning' %>
-      <%= link_to 'Voltar', articles_path, class: 'btn btn-primary' %>
+    <div class="mt-3">
+      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-warning mr-2' %>
+      <%= link_to 'Excluir', @article, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger mr-2' %>
+      <%= link_to 'Voltar', articles_path, class: 'btn btn-secondary' %>
     </div>
   </div>
 </body>

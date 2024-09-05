@@ -10,6 +10,9 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = Article.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to articles_path, alert: "Artigo não encontrado."
   end
 
   def new
@@ -24,6 +27,14 @@ class ArticlesController < ApplicationController
       render :new
     end
   end
+
+  # app/controllers/articles_controller.rb
+def destroy
+  @article = Article.find(params[:id])
+  @article.destroy
+  redirect_to articles_path, notice: 'Artigo excluído com sucesso.'
+end
+
 
   def edit
   end
