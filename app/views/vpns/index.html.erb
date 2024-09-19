@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meu Aplicativo</title>
+  <title><%= content_for?(:title) ? yield(:title) : 'Meu Aplicativo' %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -21,31 +21,51 @@
 </head>
 
 <body>
-  <% if notice.present? %>
-    <div class="alert alert-success">
-      <%= notice %>
-    </div>
-  <% end %>
+  <div class="container mt-4">
+    <% content_for :title, "VPNs" %>
+    <h1><%= yield(:title) %></h1>
 
-  <% content_for :title, "VPNs" %>
+    <% if notice.present? %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
+    <% end %>
 
-  <div id="vpns">
-    <% @vpns.each do |vpn| %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= vpn.nomedaconexao %></h5>
-          <p class="card-text">
-            <strong>Local:</strong> <%= vpn.local %><br>
-            <strong>Gateway Remoto:</strong> <%= vpn.gatewayremoto %><br>
-            <strong>Chave:</strong> <%= vpn.chave %>
-          </p>
-          <%= link_to "Show this VPN", vpn, class: "btn btn-primary" %>
+
+    <!-- Formulário de Pesquisa -->
+    <%= form_with(url: vpns_path, method: :get, local: true, class: 'mb-4') do %>
+      <div class="form-group">
+        <%= label_tag :search, "Pesquisar Vpns", class: 'form-label' %>
+        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Digite o modelo da impressora' %>
+        <div class="mt-2">
+        <%= submit_tag 'Pesquisar', class: 'btn btn-primary' %>
+                  <%= link_to 'Nova vpns', new_vpn_path, class: 'btn btn-primary' %>
+
         </div>
       </div>
     <% end %>
-  </div>
 
-  <%= link_to "New VPN", new_vpn_path, class: "btn btn-success mt-3" %>
+    <!-- Lista de VPNs -->
+    <div class="list-group">
+      <% @vpns.each do |vpn| %>
+        <div class="list-group-item list-group-item-action mb-3">
+          <div class="d-flex w-100 justify-content-between">
+            <div>
+              <strong>Local:</strong> <%= vpn.local %><br>
+              <strong>Gateway Remoto:</strong> <%= vpn.gatewayremoto %><br>
+              <strong>Chave:</strong> <%= vpn.chave %>
+            </div>
+            <%= link_to 'Ver Detalhes', vpn_path(vpn), class: 'btn btn-info btn-sm' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <!-- Paginação -->
+    <div class="d-flex justify-content-center mt-4">
+    </div>
+  </div>
 
   <!-- Inclusão do JavaScript do Bootstrap -->
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>

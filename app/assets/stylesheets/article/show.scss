@@ -1,3 +1,28 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
 // show.scss
 // Estilo da card com detalhes do artigo
 .card {
@@ -36,13 +61,13 @@
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
+    color: var(--light-text);
+    background-color: var(--primary-color);
     padding: 10px 15px;
     border-radius: 5px;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: var(--primary-hover);
     }
   }
 }
@@ -60,24 +85,25 @@
   justify-content: center;
   margin-top: 20px;
 
-  .btn-lg {
+  .btn {
     margin-right: 10px;
     padding: 10px 20px;
     font-size: 1.2rem;
-  }
+    border-radius: 5px; // Consistência nas bordas
 
-  .btn-warning {
-    background-color: #f0ad4e;
-    border-color: #eea236;
-  }
+    &.btn-warning {
+      background-color: #f0ad4e;
+      border-color: #eea236;
+    }
 
-  .btn-danger {
-    background-color: #d9534f;
-    border-color: #d43f3a;
-  }
+    &.btn-danger {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+    }
 
-  .btn-secondary {
-    background-color: #5bc0de;
-    border-color: #46b8da;
+    &.btn-secondary {
+      background-color: #5bc0de;
+      border-color: #46b8da;
+    }
   }
 }

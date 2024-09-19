@@ -51,21 +51,21 @@
       </div>
     <% end %>
 
-    <div id="impressoras">
+        <!-- Lista de impressoras -->
+    <div class="list-group">
       <% @impressoras.each do |impressora| %>
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title"><%= impressora.modelo %></h5>
-            <p class="card-text">
-              <strong>Departamento:</strong> <%= impressora.departamento %><br>
-            </p>
-            <%= link_to 'Ver Detalhes', impressora, class: 'btn btn-info mr-2' %>
-
+        <div class="list-group-item list-group-item-action mb-3">
+          <div class="d-flex w-100 justify-content-between">
+  <strong>Departamento:</strong> <%= impressora.departamento %><br>
+  <strong>Criado em:</strong> <%= impressora.created_at.strftime("%d/%m/%Y") if impressora.created_at.present? %>
           </div>
+          <p class="mb-1"><%= truncate(impressora.modelo, length: 150) %></p>
+
+          <%= link_to 'Ver Detalhes', impressora_path(impressora), class: 'btn btn-info btn-sm' %>
         </div>
       <% end %>
     </div>
-
+  </div>
   </div>
 </body>
 </html>

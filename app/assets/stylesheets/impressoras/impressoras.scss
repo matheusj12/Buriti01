@@ -1,11 +1,18 @@
-// impressoras.scss
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+}
 
 // Importar fontes do Google
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 // Variáveis de cores
-$primary-color: #007bff;
-$secondary-color: #6c757d;
 $success-color: #28a745;
 $danger-color: #dc3545;
 $background-color: #f8f9fa;
@@ -14,8 +21,19 @@ $border-color: #dee2e6;
 // Estilos gerais do corpo
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: $background-color;
-  color: #212529;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 // Container
@@ -25,7 +43,7 @@ body {
 
 // Títulos
 h1 {
-  color: $primary-color;
+  color: var(--primary-color);
 }
 
 // Mensagens de erro
@@ -52,19 +70,19 @@ h1 {
 }
 
 .form-control:focus {
-  border-color: $primary-color;
-  box-shadow: 0 0 0 .2rem rgba($primary-color, .25);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 .2rem rgba(var(--primary-color), .25);
 }
 
 // Botão de submit
 .btn-primary {
-  background-color: $primary-color;
-  border-color: $primary-color;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .btn-primary:hover {
-  background-color: darken($primary-color, 10%);
-  border-color: darken($primary-color, 10%);
+  background-color: darken(var(--primary-color), 10%);
+  border-color: darken(var(--primary-color), 10%);
 }
 
 // Estilos específicos
@@ -76,3 +94,18 @@ h1 {
   font-weight: bold;
 }
 
+// Responsividade
+@media (max-width: 600px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-control,
+  .btn-primary {
+    width: 100%;
+  }
+}

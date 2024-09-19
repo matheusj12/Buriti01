@@ -1,14 +1,32 @@
-/* Estilo global */
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f7fc;
-  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 /* Cabeçalho */
 h1 {
   font-size: 2.5rem;
-  color: #0044cc;
+  color: var(--primary-color);
   text-align: center;
   margin-bottom: 1.5rem;
   font-weight: bold;
@@ -16,7 +34,7 @@ h1 {
 
 /* Formulário de Pesquisa */
 .form-control {
-  border: 2px solid #0044cc;
+  border: 2px solid var(--primary-color);
   border-radius: 25px;
   padding: 10px 20px;
   transition: all 0.3s ease;
@@ -24,35 +42,52 @@ h1 {
 
 .form-control:focus {
   box-shadow: 0 0 10px rgba(0, 68, 204, 0.5);
-  border-color: #003399;
+  border-color: var(--primary-hover);
 }
 
-.btn-primary {
-  background-color: #0044cc;
+/* Botões */
+.btn {
   border: none;
   border-radius: 25px;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
 }
 
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
 .btn-primary:hover {
-  background-color: #003399;
+  background-color: var(--primary-hover);
 }
 
 .btn-success {
   background-color: #28a745;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
 }
 
 .btn-success:hover {
   background-color: #218838;
 }
 
+.btn-info {
+  background-color: var(--secondary-color);
+}
+
+.btn-info:hover {
+  background-color: var(--secondary-hover);
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+}
+
+.btn-warning:hover {
+  background-color: #ec971f;
+}
+
 /* Lista de Artigos */
 .list-group-item {
-  background-color: #ffffff;
+  background-color: var(--light-bg);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
@@ -67,7 +102,7 @@ h1 {
 
 h3 {
   font-size: 1.75rem;
-  color: #003399;
+  color: var(--primary-hover);
 }
 
 p {
@@ -75,34 +110,12 @@ p {
   color: #666;
 }
 
-.btn-info {
-  background-color: #008cba;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-}
-
-.btn-info:hover {
-  background-color: #0077a3;
-}
-
-.btn-warning {
-  background-color: #f0ad4e;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-}
-
-.btn-warning:hover {
-  background-color: #ec971f;
-}
-
 /* Rodapé */
 footer {
   margin-top: 50px;
   padding: 20px 0;
   text-align: center;
-  background-color: #0044cc;
+  background-color: var(--primary-color);
   color: #fff;
   border-radius: 10px 10px 0 0;
 }

@@ -1,7 +1,28 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+  --custom-bg: #00CDCD; /* Adicionando uma variável para o fundo */
+}
 
-// Definir o estilo do corpo e do fundo
 body {
-  background-color: #00CDCD;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--custom-bg); /* Usando a variável para o fundo */
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 // Estilos para o contêiner principal
@@ -11,17 +32,15 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #00CDCD;
+  background-color: var(--custom-bg); /* Usando a variável para o fundo */
 }
 
 // Estilos para os campos e rótulos
 .custom-form-floating {
-  position: center;
   margin-bottom: 10px;
 }
 
 .custom-form-floating input {
-
   padding: 10px 60px;
   border-radius: 5px;
 }
@@ -32,11 +51,10 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px; /* Mantendo apenas uma borda */
   font-size: 16px;
   cursor: pointer;
-  border: 1px solid #eee;
-	border-radius: 20px;
+  border: 1px solid #eee; /* Se quiser manter a borda, mas sem duplicar border-radius */
 }
 
 .actions input[type="submit"]:hover {

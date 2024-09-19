@@ -1,7 +1,49 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Temas */
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Estilos gerais para o botão de login */
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 0 5px red; /* Sombra vermelha */
+  transition: background-color 0.3s ease; /* Transição suave para hover */
+}
+
 /* Estilos para o botão de login no tema claro */
 .actions input[type="submit"].light {
   background-color: black;
   color: white;
+}
+
+.actions input[type="submit"].light:hover {
+  background-color: #333; /* Alteração de cor no hover */
 }
 
 /* Estilos para o botão de login no tema escuro */
@@ -10,22 +52,6 @@
   color: black;
 }
 
-/* Estilos adicionais para ambos os temas */
-.actions input[type="submit"] {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 5px;
-  box-shadow: 0 0 5px red; /* Adiciona uma sombra vermelha em volta do botão */
-}
-
-.actions input[type="submit"]:hover {
-  background-color: black;
-}
-
-/* Estilos para o botão de login no tema escuro quando hover */
 .actions input[type="submit"].dark:hover {
-  background-color: white
+  background-color: #ccc; /* Alteração de cor no hover */
 }
