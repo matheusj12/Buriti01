@@ -1,0 +1,44 @@
+// Estilo para os botões de ação (Editar, Excluir, Voltar)
+.btn-custom {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px; // Espaçamento entre ícone e texto
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  color: #fff;
+
+  &:hover {
+    background-color: #ec971f;
+    border-color: #d58512;
+  }
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #fff;
+
+  &:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+  }
+}
+
+.btn-secondary {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  color: #fff;
+
+  &:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+  }
+}

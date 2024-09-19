@@ -19,7 +19,6 @@ h1 {
   border: 2px solid #0044cc;
   border-radius: 25px;
   padding: 10px 20px;
-  width: 300px;
   transition: all 0.3s ease;
 }
 
@@ -28,16 +27,44 @@ h1 {
   border-color: #003399;
 }
 
-.btn-primary {
-  background-color: #0044cc;
+/* Botões */
+.btn-primary, .btn-success, .btn-info, .btn-warning {
   border: none;
   border-radius: 25px;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
 }
 
+.btn-primary {
+  background-color: #0044cc;
+}
+
 .btn-primary:hover {
   background-color: #003399;
+}
+
+.btn-success {
+  background-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-info {
+  background-color: #008cba;
+}
+
+.btn-info:hover {
+  background-color: #0077a3;
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+}
+
+.btn-warning:hover {
+  background-color: #ec971f;
 }
 
 /* Lista de Artigos */
@@ -55,7 +82,7 @@ h1 {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-h4 {
+h3 {
   font-size: 1.75rem;
   color: #003399;
 }
@@ -63,17 +90,6 @@ h4 {
 p {
   font-size: 1rem;
   color: #666;
-}
-
-.btn-info {
-  background-color: #008cba;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-}
-
-.btn-info:hover {
-  background-color: #0077a3;
 }
 
 /* Rodapé */

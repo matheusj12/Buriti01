@@ -18,49 +18,64 @@
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'vpns/vpns', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Incluir a referência à folha de estilo específica da view -->
   <%= yield :stylesheet %>
 </head>
 <body>
 
-  <%= form_with(model: vpn, local: true) do |form| %>
-    <% if vpn.errors.any? %>
-      <div class="alert alert-danger">
-        <h4><%= pluralize(vpn.errors.count, "error") %> prohibited this VPN from being saved:</h4>
-        <ul>
-          <% vpn.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header text-center bg-primary text-white">
+        <h3>Configurar VPN</h3>
       </div>
-    <% end %>
+      <div class="card-body">
+        <%= form_with(model: vpn, local: true, class: "p-3") do |form| %>
+          <!-- Exibir erros de validação -->
+          <% if vpn.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(vpn.errors.count, "erro") %> impedem esta VPN de ser salva:</h4>
+              <ul>
+                <% vpn.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-    <div class="form-group">
-      <%= form.label :local %>
-      <%= form.text_field :local, class: "form-control" %>
-    </div>
+          <!-- Campo Local -->
+          <div class="form-group">
+            <%= form.label :local, class: "font-weight-bold" %>
+            <%= form.text_field :local, class: "form-control", placeholder: "Insira o local" %>
+          </div>
 
-    <div class="form-group">
-      <%= form.label :nomedaconexao %>
-      <%= form.text_field :nomedaconexao, class: "form-control" %>
-    </div>
+          <!-- Campo Nome da Conexão -->
+          <div class="form-group">
+            <%= form.label :nomedaconexao, class: "font-weight-bold" %>
+            <%= form.text_field :nomedaconexao, class: "form-control", placeholder: "Insira o nome da conexão" %>
+          </div>
 
-    <div class="form-group">
-      <%= form.label :gatewayremoto %>
-      <%= form.text_field :gatewayremoto, class: "form-control" %>
-    </div>
+          <!-- Campo Gateway Remoto -->
+          <div class="form-group">
+            <%= form.label :gatewayremoto, class: "font-weight-bold" %>
+            <%= form.text_field :gatewayremoto, class: "form-control", placeholder: "Insira o gateway remoto" %>
+          </div>
 
-    <div class="form-group">
-      <%= form.label :chave %>
-      <%= form.text_field :chave, class: "form-control" %>
-    </div>
+          <!-- Campo Chave -->
+          <div class="form-group">
+            <%= form.label :chave, class: "font-weight-bold" %>
+            <%= form.text_field :chave, class: "form-control", placeholder: "Insira a chave de conexão" %>
+          </div>
 
-    <div class="form-group">
-      <%= form.submit 'Save', class: 'btn btn-primary' %>
+          <!-- Botão de submissão -->
+          <div class="text-center">
+            <%= form.submit 'Salvar VPN', class: 'btn btn-success btn-lg' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 
   <!-- Inclusão do JavaScript do Bootstrap -->
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todos os Artigos - Meu Aplicativo</title>
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <!-- Incluir o CSS do Bootstrap -->
+  <!-- CSS do Bootstrap -->
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Arquivo de estilo específico -->
+  <%= stylesheet_link_tag 'article/article', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Incluir a biblioteca jQuery e o JavaScript do Bootstrap -->
+  <!-- jQuery e JavaScript do Bootstrap -->
   <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
 
-  <!-- Carregar o arquivo JavaScript principal -->
+  <!-- Arquivo JavaScript principal -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Incluir a referência à folha de estilo específica da view -->
+  <!-- Folha de estilo específica da view -->
   <%= yield :stylesheet %>
 </head>
 
@@ -26,25 +26,24 @@
   <div class="container mt-4">
     <h1 class="mb-4">Todos os Artigos</h1>
 
-
     <!-- Formulário de Pesquisa -->
     <%= form_with(url: articles_path, method: :get, local: true, class: 'mb-4') do %>
       <div class="form-group">
         <%= label_tag :search, "Pesquisar Artigos", class: 'form-label' %>
         <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Digite o título do artigo' %>
-
-            <%= link_to 'Novo Artigo', new_article_path, class: 'btn btn-primary' %>
-    <%= submit_tag 'Pesquisar', class: 'btn btn-primary' %>
+        <div class="mt-2">
+          <%= link_to 'Novo Artigo', new_article_path, class: 'btn btn-primary' %>
+          <%= submit_tag 'Pesquisar', class: 'btn btn-primary' %>
+        </div>
       </div>
-
     <% end %>
 
+    <!-- Lista de Artigos -->
     <% if @artigos.any? %>
       <ul class="list-group">
         <% @artigos.each do |artigo| %>
           <li class="list-group-item mb-3">
             <h3><%= artigo.title %></h3>
-
             <%= link_to 'Ver Detalhes', article_path(artigo), class: 'btn btn-info mr-2' %>
             <%= link_to 'Editar', edit_article_path(artigo), class: 'btn btn-warning' %>
           </li>

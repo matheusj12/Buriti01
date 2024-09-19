@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meu Aplicativo</title>
+  <title><%= content_for?(:title) ? yield(:title) : 'Lista de Tutorias' %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -25,29 +25,27 @@
 </head>
 
 <body>
-
-  <div class="container mt-4">
-    <h1 class="mb-4">Lista de Tutorias</h1>
-
     <!-- Formulário de Pesquisa -->
-    <%= form_with url: articles_path, method: :get, local: true, class: 'form-inline mb-4' do |form| %>
+    <%= form_with url: articles_path, method: :get, local: true, class: 'form-inline mb-4 justify-content-center' do |form| %>
       <div class="form-group">
         <%= form.label :search, 'Pesquisar:', class: 'sr-only' %>
         <%= form.text_field :search, value: params[:search], placeholder: 'Buscar por título ou descrição', class: 'form-control mr-sm-2' %>
       </div>
-      <%= form.submit 'Pesquisar', class: 'btn btn-primary my-2 my-sm-0' %>
+      <%= form.submit 'Pesquisar', class: 'btn btn-primary' %>
     <% end %>
 
     <!-- Lista de Artigos -->
     <div class="list-group">
       <% @articles.each do |article| %>
-        <div class="list-group-item list-group-item-action mb-2">
-          <h4 class="mb-1"><%= article.title %></h4>
-          <p class="mb-1"><%= article.description %></p>
-          <p class="mb-1"><%= truncate(article.content, length: 100) %></p>
+        <div class="list-group-item list-group-item-action mb-3">
+          <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1"><%= article.title %></h4>
+            <small class="text-muted"><%= article.published_at.strftime("%d/%m/%Y") if article.published_at.present? %></small>
+          </div>
+          <p class="mb-1"><%= truncate(article.description, length: 150) %></p>
+          <p class="mb-1"><%= truncate(article.content, length: 200) %></p>
           <p class="mb-1"><strong>Autor:</strong> <%= article.author %></p>
-          <p class="mb-1"><strong>Publicado em:</strong> <%= article.published_at.strftime("%d/%m/%Y") if article.published_at.present? %></p>
-          <%= link_to 'Ver Detalhes', article_path(article), class: 'btn btn-info' %>
+          <%= link_to 'Ver Detalhes', article_path(article), class: 'btn btn-info btn-sm' %>
         </div>
       <% end %>
     </div>
@@ -60,5 +58,6 @@
     // Carregar a biblioteca do Google Charts
     google.charts.load('current', { 'packages': ['corechart'] });
   <% end %>
+
 </body>
 </html>

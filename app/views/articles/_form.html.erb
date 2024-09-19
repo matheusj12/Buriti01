@@ -1,4 +1,5 @@
-<%= form_with(model: article, local: true, html: { multipart: true }) do |form| %>
+<%= form_with(model: article, local: true, html: { multipart: true, class: 'needs-validation', novalidate: true }) do |form| %>
+  <!-- Exibição de erros -->
   <% if article.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(article.errors.count, "erro") %> proibiu que este artigo fosse salvo:</h2>
@@ -10,47 +11,61 @@
     </div>
   <% end %>
 
+  <!-- Título -->
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
+    <%= form.label :title, "Título", class: "font-weight-bold" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Digite o título do artigo", required: true %>
+    <div class="invalid-feedback">Por favor, insira o título.</div>
   </div>
 
+  <!-- Corpo do Artigo -->
   <div class="form-group">
-    <%= form.label :body %>
-    <%= form.text_area :body, class: "form-control" %>
+    <%= form.label :body, "Conteúdo", class: "font-weight-bold" %>
+    <%= form.text_area :body, class: "form-control", rows: 5, placeholder: "Escreva o conteúdo do artigo", required: true %>
+    <div class="invalid-feedback">Por favor, insira o conteúdo do artigo.</div>
   </div>
 
+  <!-- Autor -->
   <div class="form-group">
-    <%= form.label :author %>
-    <%= form.text_field :author, class: "form-control" %>
+    <%= form.label :author, "Autor", class: "font-weight-bold" %>
+    <%= form.text_field :author, class: "form-control", placeholder: "Nome do autor", required: true %>
+    <div class="invalid-feedback">Por favor, insira o nome do autor.</div>
   </div>
 
+  <!-- Data de Publicação -->
   <div class="form-group">
-    <%= form.label :published_at %>
-    <%= form.date_select :published_at, class: "form-control" %>
+    <%= form.label :published_at, "Data de Publicação", class: "font-weight-bold" %>
+    <%= form.date_select :published_at, class: "form-control", required: true %>
+    <div class="invalid-feedback">Por favor, selecione a data de publicação.</div>
   </div>
 
+  <!-- Tags -->
   <div class="form-group">
-    <%= form.label :tags %>
-    <%= form.text_field :tags, class: "form-control" %>
+    <%= form.label :tags, "Tags", class: "font-weight-bold" %>
+    <%= form.text_field :tags, class: "form-control", placeholder: "Separe as tags por vírgula" %>
   </div>
 
+  <!-- Upload PDF -->
   <div class="form-group">
-    <%= form.label :pdf %> (importar PDF)
-    <%= form.file_field :pdf, class: "form-control" %>
+    <%= form.label :pdf, "Importar PDF", class: "font-weight-bold" %>
+    <%= form.file_field :pdf, class: "form-control-file" %>
+    <div class="invalid-feedback">Por favor, selecione um arquivo PDF.</div>
   </div>
 
+  <!-- Upload Imagem -->
   <div class="form-group">
-    <%= form.label :image %> (cadastrar imagem)
-    <%= form.file_field :image, class: "form-control" %>
+    <%= form.label :image, "Cadastrar Imagem", class: "font-weight-bold" %>
+    <%= form.file_field :image, class: "form-control-file" %>
   </div>
 
+  <!-- Visualizar PDF Existente -->
   <% if article.pdf.attached? %>
     <div class="form-group">
       <%= link_to 'Download PDF', rails_blob_path(article.pdf, disposition: "attachment"), class: "btn btn-primary" %>
     </div>
   <% end %>
 
+  <!-- Botão de Submissão -->
   <div class="actions">
     <%= form.submit "Salvar Artigo", class: "btn btn-success" %>
   </div>

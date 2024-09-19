@@ -5,6 +5,14 @@
 //= require chartkick
 //= require Chart.bundle
 //= link home/home.css
+//= link article/article.css
+//= link vpns/vpns.css
+//= link article/show.css
+//= link vpns/show.css
+//= link impressoras/show.css
+//= link impressoras/impressoras.css
+ //= link stock_controls/stock_controls.css
+
 
 
 
