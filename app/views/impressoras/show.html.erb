@@ -18,54 +18,53 @@
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'impressoras/show', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Incluir a referência à folha de estilo específica da view -->
   <%= yield :stylesheet %>
 </head>
 <body>
 
-  <div class="container mt-4">
-    <p class="text-success"><%= notice %></p>
 
-    <div id="<%= dom_id @impressora %>" class="card shadow-sm">
-      <div class="card-body">
-        <h2 class="card-title"><%= @impressora.modelo %></h2>
-
-        <p class="card-text">
-          <strong>Modelo:</strong> <%= @impressora.modelo %><br>
-          <strong>Proprietário:</strong> <%= @impressora.proprietario %><br>
-          <strong>Local:</strong> <%= @impressora.departamento %>
-        </p>
-
-        <div class="row">
-          <div class="col-md-6">
-            <p>
-              <strong>Foto da Impressora:</strong><br>
-              <% if @impressora.foto.attached? %>
-                <%= image_tag @impressora.foto, class: "img-fluid rounded mt-2" %>
-              <% else %>
-                <span class="text-muted">No photo available</span>
-              <% end %>
-            </p>
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="card border-primary mb-4">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0"><%= @impressora.modelo %></h4>
           </div>
-          <div class="col-md-6">
-            <p>
-              <strong>Foto do Toner:</strong><br>
-              <% if @impressora.toner_foto.attached? %>
-                <%= image_tag @impressora.toner_foto, class: "img-fluid rounded mt-2" %>
-              <% else %>
-                <span class="text-muted">No photo available</span>
-              <% end %>
+          <div class="card-body">
+            <h5 class="card-title">Detalhes da Impressora</h5>
+            <p class="card-text">
+              <strong>Modelo:</strong> <%= @impressora.modelo %><br>
+              <strong>Proprietário:</strong> <%= @impressora.proprietario %><br>
+              <strong>Local:</strong> <%= @impressora.departamento %>
             </p>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <h6>Foto da Impressora</h6>
+                <% if @impressora.foto.attached? %>
+                  <%= image_tag @impressora.foto, class: "img-fluid rounded" %>
+                <% else %>
+                  <span class="text-muted">Nenhuma foto disponível</span>
+                <% end %>
+              </div>
+              <div class="col-md-6 mb-3">
+                <h6>Foto do Toner</h6>
+                <% if @impressora.toner_foto.attached? %>
+                  <%= image_tag @impressora.toner_foto, class: "img-fluid rounded" %>
+                <% else %>
+                  <span class="text-muted">Nenhuma foto disponível</span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <%= link_to "Editar Impressora", edit_impressora_path(@impressora), class: "btn btn-warning" %>
+              <%= button_to "Excluir Impressora", @impressora, method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: "btn btn-danger" %>
+              <%= link_to "Voltar", impressoras_path, class: "btn btn-secondary" %>
+            </div>
           </div>
-        </div>
-
-        <div class="mt-3">
-          <%= link_to "Edit this impressora", edit_impressora_path(@impressora), class: "btn btn-warning" %> |
-          <%= link_to "Back to impressoras", impressoras_path, class: "btn btn-secondary" %>
-
-          <%= button_to "Destroy this impressora", @impressora, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger ml-2" %>
         </div>
       </div>
     </div>

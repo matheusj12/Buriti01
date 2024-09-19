@@ -9,34 +9,29 @@
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'article/show', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Carregar o arquivo JavaScript principal -->
   <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Adicionar estilo personalizado para ajustar a imagem -->
-  <style>
-    .custom-img {
-      max-width: 300px; /* Ajuste o tamanho máximo conforme necessário */
-      height: auto; /* Mantém a proporção da imagem */
-    }
-  </style>
 </head>
 
 <body>
   <div class="container mt-5">
     <h1 class="mb-4 text-center"><%= @article.title %></h1>
 
+    <!-- Card com os detalhes do artigo -->
     <div class="card mb-4 shadow-sm">
       <div class="card-body">
-        <h5 class="card-title">Detalhes do Artigo</h5>
+        <h2 class="card-title">Detalhes do Artigo</h2>
         <p class="card-text"><strong>Autor:</strong> <%= @article.author.present? ? @article.author : "Autor desconhecido" %></p>
         <p class="card-text"><strong>Conteúdo:</strong> <%= @article.body.present? ? @article.body : "Conteúdo não disponível" %></p>
         <p class="card-text"><strong>Publicado em:</strong> <%= @article.published_at.present? ? @article.published_at.strftime("%d/%m/%Y") : "Data não disponível" %></p>
         <p class="card-text"><strong>Tags:</strong> <%= @article.tags.present? ? @article.tags : "Sem tags" %></p>
 
+        <!-- Exibir PDF se estiver anexado -->
         <% if @article.pdf.attached? %>
           <div class="mb-3">
             <strong>PDF:</strong>
@@ -44,6 +39,7 @@
           </div>
         <% end %>
 
+        <!-- Exibir Imagem se estiver anexada -->
         <% if @article.image.attached? %>
           <div class="mb-3">
             <strong>Imagem:</strong>
@@ -53,11 +49,15 @@
       </div>
     </div>
 
-    <div>
-      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-warning btn-lg' %>
-      <%= link_to 'Excluir', @article, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-lg' %>
+    <!-- Botões de ação -->
+    <div class="d-flex justify-content-center">
+      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-warning btn-lg btn-custom' %>
+      <%= link_to 'Excluir', @article, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-lg btn-custom' %>
       <%= link_to 'Voltar', articles_path, class: 'btn btn-secondary btn-lg' %>
     </div>
   </div>
+
+  <!-- Scripts do Bootstrap -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>

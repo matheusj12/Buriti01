@@ -1,0 +1,86 @@
+// impressoras/show.scss
+
+// Importar fontes do Google
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+// Variáveis de cores
+$primary-color: #007bff;
+$warning-color: #ffc107;
+$secondary-color: #6c757d;
+$danger-color: #dc3545;
+$background-color: #f8f9fa;
+$border-color: #dee2e6;
+
+// Estilos gerais do corpo
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $background-color;
+}
+
+// Container
+.container {
+  max-width: 900px;
+}
+
+// Cartão
+.card {
+  border: 1px solid $border-color;
+  border-radius: .25rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  color: $primary-color;
+}
+
+.card-text {
+  margin-bottom: 1rem;
+}
+
+// Imagens
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.mt-2 {
+  margin-top: .5rem;
+}
+
+// Botões
+.btn {
+  margin-right: .5rem;
+}
+
+.btn-warning {
+  background-color: $warning-color;
+  border-color: $warning-color;
+}
+
+.btn-warning:hover {
+  background-color: darken($warning-color, 10%);
+  border-color: darken($warning-color, 10%);
+}
+
+.btn-secondary {
+  background-color: $secondary-color;
+  border-color: $secondary-color;
+}
+
+.btn-secondary:hover {
+  background-color: darken($secondary-color, 10%);
+  border-color: darken($secondary-color, 10%);
+}
+
+.btn-danger {
+  background-color: $danger-color;
+  border-color: $danger-color;
+}
+
+.btn-danger:hover {
+  background-color: darken($danger-color, 10%);
+  border-color: darken($danger-color, 10%);
+}

@@ -1,36 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Página de edição de artigos no Meu Aplicativo">
   <title>Editar Artigo - Meu Aplicativo</title>
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <!-- Incluir o CSS do Bootstrap -->
+  <!-- Bootstrap CSS -->
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Estilos personalizados para artigos -->
+  <%= stylesheet_link_tag 'article/article', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Incluir a biblioteca jQuery e o JavaScript do Bootstrap -->
-  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
-
-  <!-- Carregar o arquivo JavaScript principal -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Incluir a referência à folha de estilo específica da view -->
+  <!-- Estilos específicos da view -->
   <%= yield :stylesheet %>
 </head>
 
 <body>
-  <div class="container mt-4">
-    <h1 class="mb-4">Editar Artigo</h1>
+  <div class="container mt-5">
+    <h1 class="text-center">Editar Artigo</h1>
 
-    <!-- Renderizar o formulário de edição do artigo -->
+    <!-- Exibir erros de validação, se houver -->
+    <% if @article.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= pluralize(@article.errors.count, "erro") %> encontrado(s):</h5>
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Formulário de edição de artigo -->
     <%= render 'form', article: @article %>
 
-    <!-- Link para voltar à lista de artigos -->
-    <%= link_to 'Voltar', articles_path, class: 'btn btn-primary mt-3' %>
+    <!-- Botão para voltar à lista de artigos -->
+    <div class="mt-4 text-center">
+      <%= link_to 'Voltar', articles_path, class: 'btn btn-secondary' %>
+    </div>
   </div>
+
+  <!-- jQuery e Bootstrap JS -->
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+  <!-- JavaScript principal -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>
