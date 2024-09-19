@@ -44,25 +44,25 @@
             <% # Adapte essas variáveis para refletir os atributos corretos do seu modelo %>
             <tr>
               <td>Ciano</td>
-              <td><%= movement.ciano %></td>
+              <td><%=  @stock_control.ciano %></td>
               <td><%= movement.movement_type %></td>
               <td><%= movement.created_at %></td>
             </tr>
             <tr>
               <td>Magenta</td>
-              <td><%= movement.magenta %></td>
+              <td><%= @stock_control.magenta %></td>
               <td><%= movement.movement_type %></td>
               <td><%= movement.created_at %></td>
             </tr>
             <tr>
               <td>Amarelo</td>
-              <td><%= movement.amarelo %></td>
+              <td><%= @stock_control.amarelo %></td>
               <td><%= movement.movement_type %></td>
               <td><%= movement.created_at %></td>
             </tr>
             <tr>
               <td>Preto</td>
-              <td><%= movement.preto %></td>
+              <td><%= @stock_control.preto %></td>
               <td><%= movement.movement_type %></td>
               <td><%= movement.created_at %></td>
             </tr>
