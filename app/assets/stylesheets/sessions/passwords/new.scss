@@ -1,42 +1,55 @@
+// Definindo a variável Sass para a cor do botão
+$button-bg: #00CDCD;
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0; /* Remover margem padrão */
+  background-color: var(--light-bg); /* Usar variável de cor de fundo */
+  font-size: 16px; /* Tamanho de fonte padrão */
 }
 
 .form-password {
   text-align: center;
 }
 
-
 // Estilos para os campos e rótulos
 .custom-form-floating {
-  position: center;
   margin-bottom: 10px;
 }
 
 .custom-form-floating input {
-
-  padding: 10px 60px;
+  padding: 10px 20px; /* Ajuste de padding */
+  border: 1px solid #ccc; /* Borda padrão */
   border-radius: 5px;
+  width: 100%; /* Faz o input ocupar toda a largura */
+  max-width: 400px; /* Define um máximo para os inputs */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave para foco */
 }
 
-
+.custom-form-floating input:focus {
+  border-color: var(--primary-color); /* Mudança de cor ao focar */
+  outline: none; /* Remove contorno padrão */
+  box-shadow: 0 0 5px var(--primary-color); /* Adiciona sombra ao foco */
+}
 
 // Estilos para o botão de login
 .actions input[type="submit"] {
-  background-color: black;
+  background-color: $button-bg; // Usando a variável Sass
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px; /* Mantendo o estilo consistente */
   font-size: 16px;
   cursor: pointer;
-  border: 1px solid #eee;
-	border-radius: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Efeito de transição */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra do botão */
 }
 
 .actions input[type="submit"]:hover {
-  background-color: black;
+  background-color: darken($button-bg, 10%); // Usando darken para o hover
+  transform: translateY(-2px); /* Levantar um pouco no hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra mais forte no hover */
 }

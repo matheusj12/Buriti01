@@ -1,3 +1,29 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+  --border-color: #ccc; /* Adicionando uma variável para a cor da borda */
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
 .titulo-da-pagina {
   display: flex;
   justify-content: center;
@@ -5,7 +31,7 @@
 }
 
 .page-border {
-  border: 2px solid #ccc;
+  border: 2px solid var(--border-color); /* Usando a variável para a borda */
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 10px;
@@ -19,4 +45,5 @@
 #tabela-vendas th, #tabela-vendas td {
   padding: 8px;
   text-align: center;
+  border: 1px solid var(--border-color); /* Adicionando bordas à tabela */
 }

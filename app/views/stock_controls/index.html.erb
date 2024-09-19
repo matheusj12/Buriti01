@@ -5,6 +5,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag de responsividade -->
+
   <!-- Incluir a biblioteca jQuery -->
   <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
 
@@ -16,9 +18,7 @@
 
   <!-- Incluir o CSS do Bootstrap -->
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-  <!-- Carregar o arquivo de estilo específico -->
-  <%= stylesheet_link_tag 'stock_controls/stock_controls', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'home/home', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <!-- Incluir a referência à folha de estilo específica da view -->
   <%= yield :stylesheet %>
@@ -40,23 +40,23 @@
           <th>Ações</th>
         </tr>
       </thead>
-<tbody>
-  <% @stock_controls.each do |stock_control| %>
-    <tr>
-      <td><%= link_to stock_control.impressora.modelo, impressora_path(stock_control.impressora) %></td>
-      <td><%= stock_control.ciano %></td>
-      <td><%= stock_control.magenta %></td>
-      <td><%= stock_control.amarelo %></td>
-      <td><%= stock_control.preto %></td>
-      <td><%= stock_control.operation_type.capitalize %></td>
-      <td>
-        <%= link_to 'Mostrar', stock_control_path(stock_control), class: 'btn btn-info btn-sm' %>
-        <%= link_to 'Editar', edit_stock_control_path(stock_control), class: 'btn btn-primary btn-sm' %>
-        <%= link_to 'Excluir', stock_control_path(stock_control), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: 'btn btn-danger btn-sm' %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
+      <tbody>
+        <% @stock_controls.each do |stock_control| %>
+          <tr>
+            <td><%= link_to stock_control.impressora.modelo, impressora_path(stock_control.impressora) %></td>
+            <td><%= stock_control.ciano %></td>
+            <td><%= stock_control.magenta %></td>
+            <td><%= stock_control.amarelo %></td>
+            <td><%= stock_control.preto %></td>
+            <td><%= stock_control.operation_type.capitalize %></td>
+            <td>
+              <%= link_to 'Mostrar', stock_control_path(stock_control), class: 'btn btn-info btn-sm' %>
+              <%= link_to 'Editar', edit_stock_control_path(stock_control), class: 'btn btn-primary btn-sm' %>
+              <%= link_to 'Excluir', stock_control_path(stock_control), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
 
     <%= link_to 'Voltar', root_path, class: 'btn btn-secondary mt-3' %>
@@ -65,9 +65,10 @@
   <!-- Inclusão do JavaScript do Bootstrap -->
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
 
-  <%= javascript_tag do %>
+  <script>
     // Carregar a biblioteca do Google Charts
     google.charts.load('current', { 'packages': ['corechart'] });
-  <% end %>
+  </script>
 
 </body>
+</html>

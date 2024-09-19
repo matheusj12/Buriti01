@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tema claro */
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+/* Tema escuro */
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}

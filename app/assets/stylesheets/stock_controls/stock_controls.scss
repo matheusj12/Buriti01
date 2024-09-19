@@ -1,51 +1,88 @@
+:root {
+  --primary-color: #0044cc;
+  --primary-hover: #003399;
+  --secondary-color: #008cba;
+  --secondary-hover: #0077a3;
+  --light-bg: #ffffff;
+  --dark-bg: #000000;
+  --light-text: #000000;
+  --dark-text: #ffffff;
+  --info-color: #17a2b8;
+  --danger-color: #dc3545;
+  --secondary-color: #6c757d;
+}
 
+// Estilos do corpo
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="theme-light"] {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body[data-theme="theme-dark"] {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
 
 // Estilos para os botões
 .btn {
   margin-right: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
 
   &:last-child {
     margin-right: 0;
   }
+
+  &:focus {
+    outline: 2px solid var(--primary-hover); /* Foco visível */
+    outline-offset: 2px;
+  }
 }
 
 .btn-info {
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: var(--info-color);
+  border-color: var(--info-color);
 
   &:hover {
-    background-color: #138496;
-    border-color: #117a8b;
+    background-color: darken(var(--info-color), 10%);
+    border-color: darken(var(--info-color), 10%);
   }
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 
   &:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
   }
 }
 
 .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
 
   &:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
+    background-color: darken(var(--danger-color), 10%);
+    border-color: darken(var(--danger-color), 10%);
   }
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 
   &:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
+    background-color: darken(var(--secondary-color), 10%);
+    border-color: darken(var(--secondary-color), 10%);
   }
 }
 
