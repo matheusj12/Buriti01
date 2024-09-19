@@ -54,6 +54,6 @@ end
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :author, :published_at, :tags)
+    params.require(:article).permit(:title, :body, :author, :published_at, :tags, :pdf, :image)
   end
 end
